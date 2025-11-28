@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNIGROW - Fresh Vegetables, Zero Effort</title>
+    <style>
+        :root {
+            --primary: #2d8a5e;
+            --primary-dark: #1a5a3f;
+            --primary-light: #e8f5f1;
+            --accent: #ff6b35;
+            --dark: #1a1a1a;
+            --light: #f5f5f5;
+            --text: #333;
+            --border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        nav .cta-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav .cta-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            background: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero .content {
+            max-width: 500px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(45, 138, 94, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-light);
+        }
+
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(45, 138, 94, 0.15);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: #f9f9f9;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .problem-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 4rem 2rem;
+        }
+
+        .solution-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .solution-intro h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .solution-intro p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--primary-light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .feature-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Technology Section */
+        .technology {
+            background: #f9f9f9;
+            padding: 4rem 2rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .tech-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-content p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .tech-features {
+            list-style: none;
+        }
+
+        .tech-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .tech-features li:last-child {
+            border-bottom: none;
+        }
+
+        .tech-icon {
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+
+        .tech-text {
+            color: #555;
+        }
+
+        /* Models Section */
+        .models {
+            padding: 4rem 2rem;
+        }
+
+        .models-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .models-intro h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .model-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .model-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(45, 138, 94, 0.2);
+        }
+
+        .model-card.featured {
+            border: 2px solid var(--primary);
+        }
+
+        .model-header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .model-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .model-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .model-body {
+            padding: 2rem;
+        }
+
+        .model-description {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .specs {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .specs li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .specs li span:last-child {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .model-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .model-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Subscription Section */
+        .subscription {
+            background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
+            padding: 4rem 2rem;
+        }
+
+        .subscription-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .subscription-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .subscription-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .sub-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .sub-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .sub-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn-large {
+            background: var(--accent);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-large:hover {
+            background: #ff5722;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .footer-section p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            color: #bbb;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--text);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .model-card:hover {
+                transform: scale(1.02);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">🌱 OMNIGROW</div>
+            <div class="nav-links">
+                <a href="#mission" onclick="scrollToSection('mission')">Our Mission</a>
+                <a href="#tech" onclick="scrollToSection('tech')">The Tech</a>
+                <a href="#models" onclick="scrollToSection('models')">Models</a>
+                <button class="cta-btn" onclick="openModal('hero')">Reserve Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="mission">
+        <div class="content">
+            <h1>The Automated Vertical Greenhouse</h1>
+            <p class="tagline">Bring the vegetable garden into your living room. Enjoy fresh, local, and organic produce grown right at home, all year round.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="openModal('hero')">Join the Movement – Pre-order Now</button>
+                <button class="btn-secondary" onclick="scrollToSection('solution')">Learn More</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/b8159842-faba-4d1d-b045-d0f5666cd54c" alt="OMNIGROW Vertical Greenhouse">
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">The Paradox of Our Plate</h2>
+            <p class="section-subtitle">Did you know your vegetables travel an average of 1,500 km before reaching your table? Between nutrient loss, waste, and lack of transparency, the current system is broken.</p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>❌ Dependency</h3>
+                    <p>Relying on global imports for daily greens means less control over quality and freshness.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>🌍 Carbon Footprint</h3>
+                    <p>High environmental cost due to transport, refrigeration, and packaging across continents.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>😞 Consumer Frustration</h3>
+                    <p>Buying "perfect looking" produce that lacks taste, nutrients, and true freshness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <div class="container">
+            <div class="solution-intro">
+                <h2>OMNIGROW – Fresh, Healthy, and Effortless</h2>
+                <p>We don't just sell a greenhouse; we sell time. OMNIGROW is the only product that manages everything from planting to harvesting automatically.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🎨 Compact & Futuristic</h3>
+                    <p>Designed to fit perfectly into modern urban spaces. A sleek, elegant addition to your home that looks as good as it performs.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🤖 Total Automation</h3>
+                    <p>Forget "smart pots" where you do the work. OMNIGROW uses robotics to manage the entire cycle from seed to harvest.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⏰ Zero Effort</h3>
+                    <p>Enjoy the benefits of gardening without the manual labor. Set it and forget it – your vegetables grow while you live.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="technology" id="tech">
+        <div class="container">
+            <div class="tech-grid">
+                <div class="tech-content">
+                    <h2>More Than a Greenhouse, An Intelligent Ecosystem</h2>
+                    <p>Control your indoor farm with a single touch. OMNIGROW combines cutting-edge robotics, intelligent climate control, and a user-friendly app to create the perfect growing environment.</p>
+                    <ul class="tech-features">
+                        <li>
+                            <span class="tech-icon">📱</span>
+                            <span class="tech-text"><strong>Full Control (App):</strong> Monitor your harvest via our interactive tablet or smartphone app</span>
+                        </li>
+                        <li>
+                            <span class="tech-icon">💨</span>
+                            <span class="tech-text"><strong>Smart Systems:</strong> Advanced airflow and irrigation systems ensure perfect growing conditions</span>
+                        </li>
+                        <li>
+                            <span class="tech-icon">🌿</span>
+                            <span class="tech-text"><strong>Customizable:</strong> Adapt the modular shelves for herbs, leafy greens, or tomatoes</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section class="models" id="models">
+        <div class="container">
+            <div class="models-intro">
+                <h2>Choose Your Growth Size</h2>
+            </div>
+            <div class="models-grid">
+                <div class="model-card">
+                    <div class="model-header">
+                        <h3>OMNIGROW Small</h3>
+                        <div class="model-price">€800</div>
+                    </div>
+                    <div class="model-body">
+                        <p class="model-description">Perfect for couples or compact spaces.</p>
+                        <ul class="specs">
+                            <li><span>Yield per harvest:</span> <span>15.5 kg</span></li>
+                            <li><span>Cost per kg:</span> <span>€2.30</span></li>
+                            <li><span>Power consumption:</span> <span>1.8 kWh</span></li>
+                        </ul>
+                        <button class="model-btn" onclick="openModal('Small')">Reserve OMNIGROW Small</button>
+                    </div>
+                </div>
+
+                <div class="model-card featured">
+                    <div class="model-header" style="background: var(--primary-dark);">
+                        <h3>⭐ OMNIGROW Large</h3>
+                        <div class="model-price">€1,200</div>
+                    </div>
+                    <div class="model-body">
+                        <p class="model-description">Ideal for families and cooking enthusiasts.</p>
+                        <ul class="specs">
+                            <li><span>Yield per harvest:</span> <span>42 kg</span></li>
+                            <li><span>Cost per kg:</span> <span>€2.00</span></li>
+                            <li><span>Power consumption:</span> <span>5.4 kWh</span></li>
+                        </ul>
+                        <button class="model-btn" onclick="openModal('Large')">Reserve OMNIGROW Large</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Section -->
+    <section class="subscription">
+        <div class="container">
+            <div class="subscription-content">
+                <h2>The "Peace of Mind" Subscription</h2>
+                <p>To guarantee success without requiring a "green thumb," OMNIGROW is powered by our Automation Service.</p>
+                <div class="subscription-grid">
+                    <div class="sub-item">
+                        <h3>🌱 Refills</h3>
+                        <p>Seeds and nutrients delivered directly to your door</p>
+                    </div>
+                    <div class="sub-item">
+                        <h3>🧠 AI Intelligence</h3>
+                        <p>Continuous app updates and support to optimize growth</p>
+                    </div>
+                    <div class="sub-item">
+                        <h3>✅ Real Value</h3>
+                        <p>Grow your own food for just €2-3/kg</p>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; font-size: 1.2rem; color: var(--primary-dark); font-weight: 600;">~€49/month</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Taste the Future?</h2>
+            <p>Sustainable, accessible, and delicious. Join thousands who are already enjoying fresh produce at home.</p>
+            <button class="cta-btn-large" onclick="openModal('cta')">Reserve My OMNIGROW Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About EcoLab</h3>
+                <p>We're on a mission to bring fresh, sustainable agriculture into every home. OMNIGROW is the future of food.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: <a href="mailto:ecolab@gmail.com">ecolab@gmail.com</a></p>
+                <p>Website: <a href="https://www.ecolab.com" target="_blank">www.ecolab.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p><a href="#">Instagram</a></p>
+                <p><a href="#">Pinterest</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 EcoLab. All rights reserved. | OMNIGROW - Bringing Fresh to Your Home</p>
+        </div>
+    </footer>
+
+    <!-- Pre-order Modal -->
+    <div id="preorderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Reserve Your OMNIGROW</h2>
+            <form id="preorderForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>Model</label>
+                    <input type="text" id="modelType" readonly style="background: #f5f5f5;">
+                </div>
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" required placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone *</label>
+                    <input type="tel" required placeholder="+33 6 XX XX XX XX">
+                </div>
+                <div class="form-group">
+                    <label>City / Country</label>
+                    <input type="text" placeholder="Paris, France">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="Why OMNIGROW excites you..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function openModal(source) {
+            const modal = document.getElementById('preorderModal');
+            const modelType = document.getElementById('modelType');
+            
+            if (source === 'Small') {
+                modelType.value = 'OMNIGROW Small - €800';
+            } else if (source === 'Large') {
+                modelType.value = 'OMNIGROW Large - €1,200';
+            } else {
+                modelType.value = 'OMNIGROW (Choose model during call)';
+            }
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('preorderModal');
+            modal.classList.remove('active');
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your reservation! We will contact you shortly with next steps. 🌱');
+            closeModal();
+            document.getElementById('preorderForm').reset();
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('preorderModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
